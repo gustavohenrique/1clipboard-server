@@ -1,6 +1,7 @@
 
 const serverPort = process.argv[2] || 3000;
 var io = require('socket.io').listen(serverPort);
+io.set('origins', '*');
 
 var createRandomRoom = function () {
     var room = '',

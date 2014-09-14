@@ -1,6 +1,7 @@
 var room = window.location.href.split('?')[1] || '';
 
-var URL = 'http://localhost:3000/beta';
+//var URL = 'http://localhost:3000/beta';
+var URL = 'http://share-clipboard.herokuapps.com:3000/beta';
 var socket = io(URL);
 
 var textarea = document.getElementById('message');
