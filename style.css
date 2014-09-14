@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.header, textarea {
+    padding: 10px;
+    margin: 0;
+}
+
+.header {
+    font-size: 12pt;
+    font-weight: normal;
+    background-color: #F5F5F5;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 19px;
+    border-bottom: 1px solid silver;
+}
+
+.text {
+    position: fixed;
+    top: 40px;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    top: 40px;
+    font-size: 1.5rem;
+    font-family: Arial;
+    color: #111111;
+    resize: none;
+    overflow: ;
+}

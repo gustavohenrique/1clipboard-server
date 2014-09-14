@@ -1,0 +1,16 @@
+{
+  "name": "clipboard",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "keywords": [
+    "nodejs",
+    "socket.io"
+  ],
+  "author": "Gustavo Henrique",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "~1.1.0"
+  },
+  "devDependencies": {}
+}

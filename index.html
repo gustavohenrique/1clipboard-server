@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Clipboard</title>
+</head>
+<body>
+    <h1 class="header">clipboard connected on <b><span id="room"></span></b></h1>
+    <textarea id="message" class="text" onkeyup="emitMessageOnKeyup()"></textarea>
+
+    <script src="bower_components/socket.io-client/socket.io.js"></script>
+    <script src="client.js"></script>
+
+</body>
+</html>
