@@ -6,9 +6,10 @@
 </head>
 <body>
     <h1 class="header">clipboard connected on <b><span id="room"></span></b></h1>
-    <textarea id="message" class="text" onkeyup="emitMessageOnKeyup()"></textarea>
+    <div class="erase"><img src="erase.png" onclick="clearMessage()"/></div>
+    <textarea id="message" class="text"></textarea>
 
-    <script src="bower_components/socket.io-client/socket.io.js"></script>
+    <script src="socket.io.js"></script>
     <script src="client.js"></script>
 
 </body>

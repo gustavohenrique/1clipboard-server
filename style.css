@@ -19,13 +19,13 @@ body {
 }
 
 .header {
-    font-size: 12pt;
+    font-size: 1.3rem;
     font-weight: normal;
     background-color: #F5F5F5;
     width: 100%;
     position: fixed;
     top: 0;
-    height: 19px;
+    height: 29px;
     border-bottom: 1px solid silver;
 }
 
@@ -35,10 +35,22 @@ body {
     border: 0;
     width: 100%;
     height: 100%;
-    top: 40px;
+    top: 50px;
     font-size: 1.5rem;
     font-family: Arial;
     color: #111111;
     resize: none;
-    overflow: ;
+    outline: none;
+    box-shadow:none;
+}
+
+.erase {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 41px;
+    height: 31px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 10px;
 }

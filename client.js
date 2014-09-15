@@ -1,9 +1,10 @@
 var room = window.location.href.split('?')[1] || '';
 
-//var URL = 'http://localhost:3000/beta';
-var URL = 'http://share-clipboard.herokuapps.com:3000/beta';
+var URL = 'http://gustavohenrique.com:3001/beta';
+//var URL = 'http://share-clipboard.herokuapps.com:3000/beta';
 var socket = io(URL);
 
+var message = '';
 var textarea = document.getElementById('message');
 
 socket.on('connection', function () {
@@ -20,10 +21,19 @@ socket.on('connection', function () {
 });
 
 
-var emitMessageOnKeyup = function () {
-    socket.emit('clipboard', { 'room': room, 'message': textarea.value });
+var sendMessage = function () {
+    if (message !== textarea.value) {
+        message = textarea.value;
+        socket.emit('clipboard', { 'room': room, 'message': message });
+    }    
+};
+
+var clearMessage = function () {
+    textarea.value = '';
+    textarea.focus();
 };
 
 window.onload = function() {
     textarea.focus();
+    setInterval(sendMessage, 2000);
 };
