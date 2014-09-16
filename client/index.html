@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="Share your clipboard between yours devices">
+    <meta name="author" content="Gustavo Henrique">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <title>Clipboard</title>
+    
+    <link rel="stylesheet" href="normalize.min.css" />
+    <link rel="stylesheet" href="foundation.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="sticky">
+        <nav class="top-bar" data-topbar data-options="sticky_on:small">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a>Clipboard <b><span id="room"></span></b></a></h1>
+                </li>
+                <li class="toggle-topbar menu-icon"><a class="menu-icon"><span></span></a></li>
+            </ul>
+            <section class="top-bar-section">
+                <ul class="right">
+                    <li class="divider"></li>
+                    <li class="has-form"><a onclick="selectAll()" class="button">Select All</a></li>
+                    <li class="divider"></li>
+                    <li class="has-form"><a onclick="clearMessage()" class="button alert">Clear Text</a></li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+
+    <div id="errorPanel" class="panel error">
+        <h5>Connection Error.</h5>
+        <p>Check if you are on-line and no firewall is blocking you.</p>
+    </div>
+
+    <div id="successPanel" class="panel success">
+        <h5>We back!</h5>
+        <p>Establishing connection...</p>
+    </div>
+
+    <footer>
+        <textarea id="message" class="text"></textarea>
+    </footer>
+
+    <script src="jquery.js"></script>
+    <script src="foundation.min.js"></script>
+    <script src="foundation.topbar.min.js"></script>
+    <script src="socket.io.js"></script>
+    <script src="client.js"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
+
+</body>
+</html>

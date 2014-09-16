@@ -1,7 +1,6 @@
 
 const serverPort = process.argv[2] || 3000;
 var io = require('socket.io').listen(serverPort);
-io.origins('*');
 
 var createRandomRoom = function () {
     var room = '',
@@ -22,7 +21,6 @@ var messages = {};
 
 var namespace = io.of('/beta');
 namespace.on('connection', function (socket) {
-    console.log(socket.handshake);
     var room = '';
     socket.emit('connection', '');
 

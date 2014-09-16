@@ -1,0 +1,42 @@
+/* Hamburger menu icon */
+.top-bar .toggle-topbar.menu-icon a {
+    height: 34px;
+    line-height: 33px;
+    padding: 0;
+    padding-right: 30px;
+    color: #FFF;
+    position: relative;
+}    
+
+.top-bar .toggle-topbar.menu-icon a::after {
+    box-shadow: 0 6px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF, 0 22px 0 1px #FFFFFF;
+    -webkit-box-shadow: 0 6px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF, 0 22px 0 1px #FFFFFF;
+    display: block;
+    height: 2px;
+    right: 0px;
+    position: absolute;
+    top: 1px;
+    width: 20px;
+}
+
+.panel.error, .panel.success {
+    display: none;
+}
+
+.panel.error {
+    background: none repeat scroll 0 0 #f2dede;
+    border-color: #ebccd1;
+    border-style: solid;
+    border-width: 1px;
+    color: #a94442;
+    margin-bottom: 1.25rem;
+    padding: 1.25rem;
+}
+
+.panel.error h5, .panel.error p {
+    color: #a94442;
+}
+
+.panel.error h5 {
+    font-weight: bold;
+}
