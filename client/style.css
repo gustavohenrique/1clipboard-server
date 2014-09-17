@@ -40,3 +40,8 @@
 .panel.error h5 {
     font-weight: bold;
 }
+
+textarea {
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
