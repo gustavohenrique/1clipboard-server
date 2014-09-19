@@ -2,7 +2,7 @@
 
 var config = {
     room: window.location.href.split('?')[1] || '',
-    URL: 'http://localhost:3000/beta'
+    URL: 'http://gustavohenrique.com:3001/beta'
 };
 
 var components = {
@@ -26,9 +26,9 @@ var app = {
         });
 
         socket.on('discover', function (roomName) {
+            components.footer.show();
             config.room = roomName;
             document.getElementById('room').innerHTML = config.room;
-            components.footer.show();
         });
     },
 
@@ -64,22 +64,21 @@ var app = {
 
     selectAll: function () {
         components.textarea.focus();
-        components.textarea.select();
+        document.getElementById('message').setSelectionRange(0, components.textarea.val().length);
     },
 
     resizeComponents: function () {
         var w =$(window),
             footerHeight = $('.footer').height(),
-            height = w.height() - components.topBar.outerHeight() - footerHeight,
+            height = w.height() - components.topBar.height() - footerHeight,
             width = w.width();
 
         var getScrollBarWidth = function () {
             var $outer = $('<div>').css({visibility: 'hidden', width: 100, overflow: 'scroll'}).appendTo('body'),
-                widthWithScroll = $('<div>').css({width: '100%'}).appendTo($outer).outerWidth();
+                widthWithScroll = $('<div>').css({width: '100%'}).appendTo($outer).width();
                 $outer.remove();
             return 100 - widthWithScroll;
         };
-
 
         components.textarea.css('min-height', height - 20);
         components.textarea.css('min-width', width - getScrollBarWidth() - 5);

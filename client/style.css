@@ -80,12 +80,15 @@ textarea {
 }
 
 /* footer and buttons */
+footer {
+    display: none;
+}
+
 footer .left, footer .right {
     text-align: center;
     color: #fff;
     height: 40px;
     font-weight: normal;
-    display: none;
 }
 
 footer .button {
