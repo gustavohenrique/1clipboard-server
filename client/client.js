@@ -2,7 +2,11 @@
 
 var config = {
     room: window.location.href.split('?')[1] || '',
-    URL: 'http://gustavohenrique.com:3001/beta'
+    URL: 'http://localhost:3000/beta',
+    intervals: {
+        sendMessage: 2000,
+        reconnect: 2000
+    }
 };
 
 var components = {
@@ -16,7 +20,7 @@ var components = {
 
 var app = {
 
-    message: '',
+    timer: null,
 
     connect: function () {
         socket.emit('enter', config.room);
@@ -46,15 +50,12 @@ var app = {
             components.successPanel.hide();
             components.textarea.show();
             components.textarea.focus();
-        }, 2000)
+        }, config.intervals.reconnect)
     },
 
     sendMessage: function () {
-        var m = components.textarea.val();
-        if (message !== m) {
-            message = m;
-            socket.emit('clipboard', { 'room': config.room, 'message': message });
-        }    
+        var message = components.textarea.val();
+        socket.emit('clipboard', { 'room': config.room, 'message': message });
     },
 
     clearMessage: function () {
@@ -82,20 +83,30 @@ var app = {
 
         components.textarea.css('min-height', height - 20);
         components.textarea.css('min-width', width - getScrollBarWidth() - 5);
+    },
+
+    startTimer: function () {
+        clearTimeout(app.timer);
+        app.timer = setTimeout(app.sendMessage, config.intervals.sendMessage);
+    },
+
+    stopTimer: function () {
+        clearTimeout(app.timer);
     }
 };
 
-var socket = io(config.URL, {
-    reconnectionDelay: 2000
-});
+var socket = io(config.URL, {reconnectionDelay: config.intervals.reconnect});
 socket.on('connection', app.connect);
 socket.on('connect_error', app.error);
 socket.on('reconnect', app.reconnect);
 
+components.textarea.on('keyup', app.startTimer);
+components.textarea.on('keydown', app.stopTimer);
+components.textarea.on('paste', app.startTimer);
+
 window.onload = function () {
     app.resizeComponents();
     components.textarea.focus();
-    setInterval(app.sendMessage, 1500);
 };
 
 window.onresize = function () {
