@@ -13,32 +13,35 @@
 </head>
 <body>
 
-    <div id="topBar" class="top-bar">
+    <header id="topBar" class="top-bar">
         <h1>Clipboard on <b><span id="room"></span></b></h1>
-    </div>
+    </header>
 
-    <div id="errorPanel" class="panel error">
-        <h2>Connection Error.</h2>
-        <p>Check if you are on-line and no firewall is blocking you.</p>
-    </div>
-
-    <div id="successPanel" class="panel success">
-        <h2>We back!</h2>
-        <p>Establishing connection...</p>
-    </div>
-
-    <div>
-        <textarea id="message" class="text"></textarea>
-    </div>
-
-    <div class="footer">
-        <div onclick="app.selectAll()" class="button left">
-            <a>Select All</a>
+    <main>
+        <div id="errorPanel" class="panel error">
+            <h2>Connection Error.</h2>
+            <p>Check if you are on-line and no firewall is blocking you.</p>
         </div>
-        <div onclick="app.clearMessage()" class="button right">
-            <a>Clear Text</a>
+
+        <div id="successPanel" class="panel success">
+            <h2>We back!</h2>
+            <p>Establishing connection...</p>
         </div>
-    </div>
+
+        <div>
+            <textarea id="message" class="text"></textarea>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="left" onclick="app.selectAll()">
+            <div class="button">Select</div>
+        </nav>
+
+        <nav class="right" onclick="app.clearMessage()">
+            <div class="button">Clear</div>
+        </nav>
+    </footer>
 
     <script src="jquery.js"></script>
     <script src="socket.io.js"></script>

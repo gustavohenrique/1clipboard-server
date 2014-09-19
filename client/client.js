@@ -10,9 +10,7 @@ var components = {
     errorPanel: $('#errorPanel'),
     successPanel: $('#successPanel'),
     topBar: $('#topBar'),
-    footer: $('.footer')
-    //btnSelectAll: $('#btnSelectAll'),
-    //bntClearText: $('#bntClearText')
+    footer: $('footer')
 };
 
 
@@ -30,6 +28,7 @@ var app = {
         socket.on('discover', function (roomName) {
             config.room = roomName;
             document.getElementById('room').innerHTML = config.room;
+            components.footer.show();
         });
     },
 
@@ -74,8 +73,16 @@ var app = {
             height = w.height() - components.topBar.outerHeight() - footerHeight,
             width = w.width();
 
+        var getScrollBarWidth = function () {
+            var $outer = $('<div>').css({visibility: 'hidden', width: 100, overflow: 'scroll'}).appendTo('body'),
+                widthWithScroll = $('<div>').css({width: '100%'}).appendTo($outer).outerWidth();
+                $outer.remove();
+            return 100 - widthWithScroll;
+        };
+
+
         components.textarea.css('min-height', height - 20);
-        components.textarea.css('min-width', width - 20);
+        components.textarea.css('min-width', width - getScrollBarWidth() - 5);
     }
 };
 
