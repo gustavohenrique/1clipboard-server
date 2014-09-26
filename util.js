@@ -10,19 +10,6 @@ var util = {
         }
 
         return room;
-    },
-
-    encode: function (message) {
-        return unescape( encodeURIComponent( JSON.stringify(message) ) );
-    },
-
-    decode: function (message) {
-        try { 
-            decodeURIComponent( escape (message) ) ;
-        }
-        catch (e) {
-            return message;
-        }
     }
 };
 
