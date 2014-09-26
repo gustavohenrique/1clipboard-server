@@ -1,7 +1,8 @@
 'use strict';
 
 var util = require('./util'),
-    messages = {};
+    messages = {},
+    urls = {};
 
 
 var app = {
@@ -9,10 +10,9 @@ var app = {
     start: function (namespace) {
 
         namespace.on('connection', function (socket) {
-            console.log('conectou');
             var room = '',
-                broadcast = function (room, message) {
-                    namespace.to(room).emit('clipboard', message);
+                broadcast = function (room, evt, message) {
+                    namespace.to(room).emit(evt, message);
                 };
 
             socket.emit('connection', '');
@@ -27,15 +27,25 @@ var app = {
                 socket.emit('discover', room);
 
                 if (messages.hasOwnProperty(room)) {
-                    broadcast(room, messages[room]);
+                    broadcast(room, 'clipboard', messages[room]);
+                }
+
+                if (urls.hasOwnProperty(room)) {
+                    broadcast(room, 'upload', urls[room]);
                 }
             });
 
             socket.on('clipboard', function (data) {
                 var message = data.message;
                 messages[data.room] = message;
-                broadcast(data.room, message);
+                broadcast(data.room, 'clipboard', message);
                 //namespace.emit('clipboard', message);
+            });
+
+            socket.on('upload', function (data) {
+                var url = data.url;
+                urls[data.room] = url;
+                broadcast(data.room, 'upload', url);
             });
          
         });
