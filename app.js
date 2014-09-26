@@ -32,8 +32,9 @@ var app = {
             });
 
             socket.on('clipboard', function (data) {
-                messages[data.room] = data.message;
-                broadcast(data.room, data.message);
+                var message = data.message;
+                messages[data.room] = message;
+                broadcast(data.room, message);
                 //namespace.emit('clipboard', message);
             });
          
