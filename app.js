@@ -2,7 +2,7 @@
 
 var util = require('./util'),
     messages = {},
-    urls = {};
+    files = {};
 
 
 var app = {
@@ -30,8 +30,8 @@ var app = {
                     broadcast(room, 'clipboard', messages[room]);
                 }
 
-                if (urls.hasOwnProperty(room)) {
-                    broadcast(room, 'upload', urls[room]);
+                if (files.hasOwnProperty(room)) {
+                    broadcast(room, 'upload', files[room]);
                 }
             });
 
@@ -43,9 +43,9 @@ var app = {
             });
 
             socket.on('upload', function (data) {
-                var url = data.url;
-                urls[data.room] = url;
-                broadcast(data.room, 'upload', url);
+                var file = { filename: data.file.filename, url: data.file.url };
+                files[data.room] = file;
+                broadcast(data.room, 'upload', file);
             });
          
         });
