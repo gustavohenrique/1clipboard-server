@@ -10,6 +10,13 @@ var util = {
         }
 
         return room;
+    },
+
+    getOrCreateRoom: function (room) {
+        if (room === undefined || room === '' || room.length === 0) {
+            return util.createRandomRoom();
+        }
+        return room;
     }
 };
 
