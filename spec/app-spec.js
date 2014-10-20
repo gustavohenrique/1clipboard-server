@@ -4,30 +4,44 @@ var serverIo = require('socket.io'),
     clientIo = require('socket.io-client'),
     client = null,
     NAMESPACE = '/beta',
-    URL = 'http://localhost:3000/beta';
+    URL = 'http://localhost:5000/beta';
 
-describe('backend', function () {
+describe('Socket.io', function () {
 
 
     beforeEach(function() {
-        server = serverIo.listen(5000);
-        app.start(server.of(NAMESPACE));
+        io = serverIo.listen(5000);
+        app.start(io.of(NAMESPACE));
+        client = clientIo.connect(URL, {reconnection: false, transports: ['websocket'], forceNew: true});
     });
 
-    // afterEach(function() {
-    //     client.disconnect();
-    //     server.close();
-    // });
+    afterEach(function(done) {
+        io.close();
+        done();
+    });
 
-    it('Server emit connection on connection', function(done) {
-        client = clientIo.connect(URL, {reconnection: false, transports: ['websocket'], forceNew: true});
-        expect(client.connected).toBe(true);
+    it('server send empty string and via "connection"', function(done) {
         client.on('connection', function (message) {
             expect(message).toBe('');
             done();
         });
-        done();
-        //client.disconnect();
-        // expect(1+1).toBe(2);
+    });
+
+    it('when client emit "enter" then server send room name via "discover"', function(done) {
+        var roomName = 'my room';
+        client.emit('enter', roomName);
+        client.on('discover', function (message) {
+            expect(message).toBe(roomName);
+            done();
+        });
+    });
+
+    it('when client emit "enter" with no room name then server create and send a random room name via "discover"', function(done) {
+        var roomName = '';
+        client.emit('enter', roomName);
+        client.on('discover', function (message) {
+            expect(message.length).toBe(5);
+            done();
+        });
     });
 });
