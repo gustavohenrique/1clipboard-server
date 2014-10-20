@@ -1,5 +1,5 @@
-var app = require('../app'),
-    events = require('../events');
+var app = require('../app/app'),
+    events = require('../app/events');
 
 var serverIo = require('socket.io'),
     clientIo = require('socket.io-client'),

@@ -1,4 +1,5 @@
-const serverPort = process.argv[2] || 3000;
+/*jslint node: true */
+var serverPort = process.argv[2] || 3000;
 var io = require('socket.io').listen(serverPort),
     namespace = io.of('/beta'),
     app = require('./app');
